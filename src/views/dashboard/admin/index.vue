@@ -8,21 +8,20 @@
       <el-col :xs="24" :sm="24" :lg="12">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>最新动态</span>
-
+            <span>Latest News</span>
           </div>
           <el-timeline>
             <el-timeline-item timestamp="2020/05/15" placement="top">
               <el-card>
-                <h4>更新角色授权数据绑定</h4>
+                <h4>Update role authorization data binding</h4>
               </el-card>
             </el-timeline-item>
             <el-timeline-item timestamp="2020/05/14" placement="top">
               <el-card>
-                <h4>角色名称和角色key控制唯一性；</h4>
-                <h4>以及字典，参数等功能唯一性控制；</h4>
-                <h4>记录总条数过滤已删除状态；</h4>
-                <h4>部分已知bug的修复；</h4>
+                <h4>Character name and role key control uniqueness;</h4>
+                <h4>Unique control of functions such as dictionaries and parameters;</h4>
+                <h4>The total number of records filter has been deleted;</h4>
+                <h4>Some known bug fixes;</h4>
               </el-card>
             </el-timeline-item>
             <el-timeline-item timestamp="2020/4/2" placement="top">
@@ -32,15 +31,23 @@
             </el-timeline-item>
           </el-timeline>
         </el-card>
-
       </el-col>
       <el-col :xs="24" :sm="24" :lg="12">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>视频教程</span>
-
+            <span>Video tutorial</span>
           </div>
-          <iframe id="b" class="b video_pc" src="//player.bilibili.com/player.html??cid=185732281&aid=455391649&pre_ad=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="min-height:485px; width: 100%" />
+          <iframe
+            id="b"
+            class="b video_pc"
+            src="//player.bilibili.com/player.html??cid=185732281&aid=455391649&pre_ad=0"
+            scrolling="no"
+            border="0"
+            frameborder="no"
+            framespacing="0"
+            allowfullscreen="true"
+            style="min-height:485px; width: 100%"
+          />
         </el-card>
       </el-col>
     </el-row>
@@ -117,7 +124,7 @@ export default {
   }
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
   .chart-wrapper {
     padding: 8px;
   }

@@ -38,7 +38,7 @@
       row-key="menuId"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
     >
-      <el-table-column prop="title" label="菜单名称" :show-overflow-tooltip="true" width="180px" />
+      <el-table-column prop="title" label="menu Name" :show-overflow-tooltip="true" width="180px" />
       <el-table-column prop="icon" label="图标" align="center" width="100px">
         <template slot-scope="scope">
           <svg-icon :icon-class="scope.row.icon" />

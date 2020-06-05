@@ -65,8 +65,8 @@
       </div>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
-        <span v-if="!loading">登 录</span>
-        <span v-else>登 录 中...</span>
+        <span v-if="!loading">Login</span>
+        <span v-else>logging in ...</span>
       </el-button>
     </el-form>
 
@@ -101,12 +101,12 @@ export default {
       },
       loginRules: {
         username: [
-          { required: true, trigger: 'blur', message: '用户名不能为空' }
+          { required: true, trigger: 'blur', message: 'Username can not be empty' }
         ],
         password: [
-          { required: true, trigger: 'blur', message: '密码不能为空' }
+          { required: true, trigger: 'blur', message: 'password can not be blank' }
         ],
-        code: [{ required: true, trigger: 'change', message: '验证码不能为空' }]
+        code: [{ required: false, trigger: 'change', message: 'verification code must be filled' }]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -205,7 +205,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
+/* Fix inconsistent input background and cursor discoloration */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
 $bg:#283443;
