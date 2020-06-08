@@ -9,12 +9,12 @@
       @close="onClose"
     >
       <div slot="title">
-        选择图标
+        Select icon
         <el-input
           v-model="key"
           size="mini"
           :style="{width: '260px'}"
-          placeholder="请输入图标名称"
+          placeholder="Please enter the icon name"
           prefix-icon="el-icon-search"
           clearable
         />
@@ -91,9 +91,9 @@ export default {
     &:hover {
       background: #f2f2f2;
     }
-    &.active-item{
+    &.active-item {
       background: #e1f3fb;
-      color: #7a6df0
+      color: #7a6df0;
     }
     > i {
       font-size: 30px;

@@ -37,6 +37,7 @@
           <div slot="header" class="clearfix">
             <span>Video tutorial</span>
           </div>
+          <!--
           <iframe
             id="b"
             class="b video_pc"
@@ -48,6 +49,7 @@
             allowfullscreen="true"
             style="min-height:485px; width: 100%"
           />
+          -->
         </el-card>
       </el-col>
     </el-row>

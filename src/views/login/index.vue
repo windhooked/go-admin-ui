@@ -1,9 +1,15 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
-
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      autocomplete="on"
+      label-position="left"
+    >
       <div class="title-container">
-        <h3 class="title">go-admin后台管理系统</h3>
+        <h3 class="title">management system</h3>
       </div>
 
       <el-form-item prop="username">
@@ -13,7 +19,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="用户名"
+          placeholder="Username"
           name="username"
           type="text"
           tabindex="1"
@@ -31,7 +37,7 @@
             ref="password"
             v-model="loginForm.password"
             :type="passwordType"
-            placeholder="密码"
+            placeholder="Password"
             name="password"
             tabindex="2"
             autocomplete="on"
@@ -51,7 +57,7 @@
         <el-input
           ref="username"
           v-model="loginForm.code"
-          placeholder="验证码"
+          placeholder="Verification Code"
           name="username"
           type="text"
           tabindex="3"
@@ -60,11 +66,19 @@
           @keyup.enter.native="handleLogin"
         />
       </el-form-item>
-      <div class="login-code" style=" width: 38%;height: 48px;float: right;background-color: darkgray;">
+      <div
+        class="login-code"
+        style=" width: 38%;height: 48px;float: right;background-color: darkgray;"
+      >
         <img style="height: 48px;width: 100%;" :src="codeUrl" @click="getCode">
       </div>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+      <el-button
+        :loading="loading"
+        type="primary"
+        style="width:100%;margin-bottom:30px;"
+        @click.native.prevent="handleLogin"
+      >
         <span v-if="!loading">Login</span>
         <span v-else>logging in ...</span>
       </el-button>
@@ -81,7 +95,6 @@
 </template>
 
 <script>
-
 import { getCodeImg } from '@/api/login'
 import SocialSign from './components/SocialSignin'
 
@@ -94,19 +107,33 @@ export default {
       cookiePassword: '',
       loginForm: {
         username: 'admin',
-        password: '123456',
+        password: 'admin',
         rememberMe: false,
         code: '',
         uuid: ''
       },
       loginRules: {
         username: [
-          { required: true, trigger: 'blur', message: 'Username can not be empty' }
+          {
+            required: true,
+            trigger: 'blur',
+            message: 'Username can not be empty'
+          }
         ],
         password: [
-          { required: true, trigger: 'blur', message: 'password can not be blank' }
+          {
+            required: true,
+            trigger: 'blur',
+            message: 'password can not be blank'
+          }
         ],
-        code: [{ required: false, trigger: 'change', message: 'verification code must be filled' }]
+        code: [
+          {
+            required: false,
+            trigger: 'change',
+            message: 'verification code must be filled'
+          }
+        ]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -153,7 +180,10 @@ export default {
     },
     checkCapslock({ shiftKey, key } = {}) {
       if (key && key.length === 1) {
-        if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
+        if (
+          (shiftKey && key >= 'a' && key <= 'z') ||
+          (!shiftKey && key >= 'A' && key <= 'Z')
+        ) {
           this.capsTooltip = true
         } else {
           this.capsTooltip = false
@@ -177,9 +207,13 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
+          this.$store
+            .dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              this.$router.push({
+                path: this.redirect || '/',
+                query: this.otherQuery
+              })
               this.loading = false
             })
             .catch(() => {
@@ -208,8 +242,8 @@ export default {
 /* Fix inconsistent input background and cursor discoloration */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
-$light_gray:#fff;
+$bg: #283443;
+$light_gray: #fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -252,9 +286,9 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 
 .login-container {
   min-height: 100%;

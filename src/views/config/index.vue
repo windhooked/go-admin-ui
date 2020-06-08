@@ -1,27 +1,27 @@
 <template>
   <div class="app-container">
     <el-form ref="queryForm" :model="queryParams" :inline="true" label-width="68px">
-      <el-form-item label="参数名称" prop="configName">
+      <el-form-item label="parameter name" prop="configName">
         <el-input
           v-model="queryParams.configName"
-          placeholder="请输入参数名称"
+          placeholder="Please enter the parameter name"
           clearable
           size="small"
           style="width: 240px"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="参数键名" prop="configKey">
+      <el-form-item label="parameter key name" prop="configKey">
         <el-input
           v-model="queryParams.configKey"
-          placeholder="请输入参数键名"
+          placeholder="Please enter the parameter key name"
           clearable
           size="small"
           style="width: 240px"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="系统内置" prop="configType">
+      <el-form-item label="System built-in" prop="configType">
         <el-select v-model="queryParams.configType" placeholder="系统内置" clearable size="small">
           <el-option
             v-for="dict in typeOptions"
@@ -55,7 +55,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-        >修改</el-button>
+        >Edit</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -65,7 +65,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-        >删除</el-button>
+        >Delete</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -74,19 +74,19 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-        >导出</el-button>
+        >Export</el-button>
       </el-col>
     </el-row>
 
     <el-table v-loading="loading" :data="configList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="参数主键" width="80" align="center" prop="configId" />
+      <el-table-column label="Parameter primary key" width="80" align="center" prop="configId" />
       <el-table-column label="参数名称" align="center" prop="configName" :show-overflow-tooltip="true" />
       <el-table-column label="参数键名" align="center" prop="configKey" :show-overflow-tooltip="true" />
-      <el-table-column label="参数键值" align="center" prop="configValue" />
-      <el-table-column label="系统内置" align="center" prop="configType" :formatter="typeFormat" />
+      <el-table-column label="Parameter key value" align="center" prop="configValue" />
+      <el-table-column label="System built-in" align="center" prop="configType" :formatter="typeFormat" />
       <el-table-column label="备注" align="center" prop="remark" :show-overflow-tooltip="true" />
-      <el-table-column label="创建时间" align="center" prop="createdAt" width="180">
+      <el-table-column label="Created time" align="center" prop="createdAt" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createdAt) }}</span>
         </template>
@@ -99,14 +99,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-          >修改</el-button>
+          >Edit</el-button>
           <el-button
             v-permisaction="['system:sysconfig:remove']"
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-          >删除</el-button>
+          >Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -122,16 +122,16 @@
     <!-- 添加或修改参数配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="参数名称" prop="configName">
-          <el-input v-model="form.configName" placeholder="请输入参数名称" :disabled="isEdit" />
+        <el-form-item label="parameter name" prop="configName">
+          <el-input v-model="form.configName" placeholder="Please enter the parameter name":disabled="isEdit" />
         </el-form-item>
-        <el-form-item label="参数键名" prop="configKey">
-          <el-input v-model="form.configKey" placeholder="请输入参数键名" :disabled="isEdit" />
+        <el-form-item label="parameter key name" prop="configKey">
+          <el-input v-model="form.configKey" placeholder="Please enter the parameter key name":disabled="isEdit" />
         </el-form-item>
-        <el-form-item label="参数键值" prop="configValue">
-          <el-input v-model="form.configValue" placeholder="请输入参数键值" />
+        <el-form-item label="parameter key value" prop="configValue">
+          <el-input v-model="form.configValue" placeholder="Please enter the parameter key value" />
         </el-form-item>
-        <el-form-item label="系统内置" prop="configType">
+        <el-form-item label="System built-in" prop="configType">
           <el-radio-group v-model="form.configType">
             <el-radio
               v-for="dict in typeOptions"
@@ -140,13 +140,13 @@
             >{{ dict.dictLabel }}</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
+        <el-form-item label="Remarks" prop="remark">
+          <el-input v-model="form.remark" type="textarea" placeholder="Please enter content" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">submit Form</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </div>
     </el-dialog>
   </div>
@@ -194,13 +194,13 @@ export default {
       // 表单校验
       rules: {
         configName: [
-          { required: true, message: '参数名称不能为空', trigger: 'blur' }
+          { required: true, message: 'Parameter name cannot be empty', trigger: 'blur' }
         ],
         configKey: [
-          { required: true, message: '参数键名不能为空', trigger: 'blur' }
+          { required: true, message: 'Parameter key name cannot be empty', trigger: 'blur' }
         ],
         configValue: [
-          { required: true, message: '参数键值不能为空', trigger: 'blur' }
+          { required: true, message: 'Parameter key value cannot be empty', trigger: 'blur' }
         ]
       }
     }
@@ -258,7 +258,7 @@ export default {
     handleAdd() {
       this.reset()
       this.open = true
-      this.title = '添加参数'
+      this.title = 'Add parameter'
       this.isEdit = false
     },
     // 多选框选中数据
@@ -274,7 +274,7 @@ export default {
       getConfig(configId).then(response => {
         this.form = response.data
         this.open = true
-        this.title = '修改参数'
+        this.title = 'Modify parameters'
         this.isEdit = true
       })
     },
@@ -285,7 +285,7 @@ export default {
           if (this.form.configId !== undefined) {
             updateConfig(this.form).then(response => {
               if (response.code === 200) {
-                this.msgSuccess('修改成功')
+                this.msgSuccess('Modified successfully')
                 this.open = false
                 this.getList()
               } else {
@@ -295,7 +295,7 @@ export default {
           } else {
             addConfig(this.form).then(response => {
               if (response.code === 200) {
-                this.msgSuccess('新增成功')
+                this.msgSuccess('Successfully added')
                 this.open = false
                 this.getList()
               } else {
@@ -306,38 +306,38 @@ export default {
         }
       })
     },
-    /** 删除按钮操作 */
+    /** Delete button operation */
     handleDelete(row) {
       const configIds = row.configId || this.ids
-      this.$confirm('是否确认删除参数编号为"' + configIds + '"的数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Are you sure to delete the data item with parameter number "' + configIds + '"?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(function() {
         return delConfig(configIds)
       }).then(() => {
         this.getList()
-        this.msgSuccess('删除成功')
+        this.msgSuccess('Successfully deleted')
       }).catch(function() {})
     },
     /** 导出按钮操作 */
     handleExport() {
       // const queryParams = this.queryParams
-      this.$confirm('是否确认导出所有参数数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Are you sure to export all parameter data items?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         this.downloadLoading = true
         import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = ['参数主键', '参数名称', '参数键名', '参数键值', '备注', '创建时间']
+          const tHeader = ['Parameter primary key', 'Parameter name', 'Parameter key name', 'Parameter key value', 'Remarks', 'Creation time']
           const filterVal = ['configId', 'configName', 'configKey', 'configValue', 'remark', 'createdAt']
           const list = this.configList
           const data = formatJson(filterVal, list)
           excel.export_json_to_excel({
             header: tHeader,
             data,
-            filename: '参数设置',
+            filename: 'Parameter setting',
             autoWidth: true, // Optional
             bookType: 'xlsx' // Optional
           })

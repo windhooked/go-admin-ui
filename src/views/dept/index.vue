@@ -1,17 +1,17 @@
 <template>
   <div class="app-container">
     <el-form :inline="true">
-      <el-form-item label="部门名称">
+      <el-form-item label="Department name">
         <el-input
           v-model="queryParams.deptName"
-          placeholder="请输入部门名称"
+          placeholder="Please enter the department name"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态">
-        <el-select v-model="queryParams.status" placeholder="部门状态" clearable size="small">
+      <el-form-item label="status">
+        <el-select v-model="queryParams.status" placeholder="Param Status" clearable size="small">
           <el-option
             v-for="dict in statusOptions"
             :key="dict.dictValue"
@@ -27,7 +27,7 @@
           icon="el-icon-search"
           size="mini"
           @click="handleQuery"
-        >搜索</el-button>
+        >Search</el-button>
         <el-button
           v-permisaction="['system:sysdept:add']"
           class="filter-item"
@@ -35,7 +35,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-        >新增</el-button>
+        >Add</el-button>
       </el-form-item>
     </el-form>
 
@@ -69,14 +69,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-          >修改</el-button>
+          >Edit</el-button>
           <el-button
             v-permisaction="['system:sysdept:add']"
             size="mini"
             type="text"
             icon="el-icon-plus"
             @click="handleAdd(scope.row)"
-          >新增</el-button>
+          >Add</el-button>
           <el-button
             v-if="scope.row.p_id != 0"
             v-permisaction="['system:sysdept:remove']"
@@ -84,7 +84,7 @@
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-          >删除</el-button>
+          >Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -94,44 +94,44 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="24">
-            <el-form-item label="上级部门" prop="parentId">
+            <el-form-item label="superior department" prop="parentId">
               <treeselect
                 v-model="form.parentId"
                 :options="deptOptions"
                 :normalizer="normalizer"
                 :show-count="true"
-                placeholder="选择上级部门"
+                placeholder="Select superior department"
                 :is-disabled="isEdit"
               />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="部门名称" prop="deptName">
-              <el-input v-model="form.deptName" placeholder="请输入部门名称" />
+            <el-form-item label="Department name" prop="deptName">
+              <el-input v-model="form.deptName" placeholder="Please enter the department name" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="显示排序" prop="orderNum">
+            <el-form-item label="display order" prop="orderNum">
               <el-input-number v-model="form.sort" controls-position="right" :min="0" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="负责人" prop="leader">
-              <el-input v-model="form.leader" placeholder="请输入负责人" maxlength="20" />
+            <el-form-item label="person in charge" prop="leader">
+              <el-input v-model="form.leader" placeholder="Please enter the person in charge" maxlength="20" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="form.phone" placeholder="请输入联系电话" maxlength="11" />
+            <el-form-item label="contact phone" prop="phone">
+              <el-input v-model="form.phone" placeholder="Please enter the contact number" maxlength="11" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="邮箱" prop="email">
-              <el-input v-model="form.email" placeholder="请输入邮箱" maxlength="50" />
+            <el-form-item label="mailbox" prop="email">
+              <el-input v-model="form.email" placeholder="Please enter your mailbox" maxlength="50" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="部门状态">
+            <el-form-item label="Department Status">
               <el-radio-group v-model="form.status">
                 <el-radio
                   v-for="dict in statusOptions"
@@ -144,8 +144,8 @@
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">Submit</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </div>
     </el-dialog>
   </div>
@@ -184,25 +184,25 @@ export default {
       // 表单校验
       rules: {
         parentId: [
-          { required: true, message: '上级部门不能为空', trigger: 'blur' }
+          { required: true, message: 'The superior department cannot be empty', trigger: 'blur' }
         ],
         deptName: [
-          { required: true, message: '部门名称不能为空', trigger: 'blur' }
+          { required: true, message: 'Department name cannot be empty', trigger: 'blur' }
         ],
         sort: [
-          { required: true, message: '菜单顺序不能为空', trigger: 'blur' }
+          { required: true, message: 'The menu order cannot be empty', trigger: 'blur' }
         ],
         email: [
           {
             type: 'email',
-            message: "'请输入正确的邮箱地址",
+            message: "'Please enter the correct email address",
             trigger: ['blur', 'change']
           }
         ],
         phone: [
           {
             pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/,
-            message: '请输入正确的手机号码',
+            message: 'Please enter the correct mobile phone number',
             trigger: 'blur'
           }
         ]
@@ -216,7 +216,7 @@ export default {
     })
   },
   methods: {
-    /** 查询部门列表 */
+    /** Query department list */
     getList() {
       this.loading = true
       getDeptList(this.queryParams).then(response => {
@@ -224,7 +224,7 @@ export default {
         this.loading = false
       })
     },
-    /** 转换部门数据结构 */
+    /** Convert department data structure */
     normalizer(node) {
       if (node.children && !node.children.length) {
         delete node.children
@@ -235,32 +235,32 @@ export default {
         children: node.children
       }
     },
-    /** 查询部门下拉树结构 */
+    /** Query department drop-down tree structure */
     getTreeselect(e) {
       getDeptList().then(response => {
         this.deptOptions = []
 
         if (e === 'update') {
-          const dept = { deptId: 0, deptName: '主类目', children: [], isDisabled: true }
+          const dept = { deptId: 0, deptName: 'depname', children: [], isDisabled: true }
           dept.children = response.data
           this.deptOptions.push(dept)
         } else {
-          const dept = { deptId: 0, deptName: '主类目', children: [] }
+          const dept = { deptId: 0, deptName: 'depName', children: [] }
           dept.children = response.data
           this.deptOptions.push(dept)
         }
       })
     },
-    // 字典状态字典翻译
+    // Dictionary status dictionary translation
     statusFormat(row) {
       return this.selectDictLabel(this.statusOptions, row.status)
     },
-    // 取消按钮
+    // cancel button
     cancel() {
       this.open = false
       this.reset()
     },
-    // 表单重置
+    // Form reset
     reset() {
       this.form = {
         deptId: undefined,
@@ -273,11 +273,11 @@ export default {
         status: '0'
       }
     },
-    /** 搜索按钮操作 */
+    /** Search button operation */
     handleQuery() {
       this.getList()
     },
-    /** 新增按钮操作 */
+    /** Add button operation */
     handleAdd(row) {
       this.reset()
       this.getTreeselect('add')
@@ -285,10 +285,10 @@ export default {
         this.form.parentId = row.deptId
       }
       this.open = true
-      this.title = '添加部门'
+      this.title = 'Add Department'
       this.isEdit = false
     },
-    /** 修改按钮操作 */
+    /** Modify button operation */
     handleUpdate(row) {
       this.reset()
       this.getTreeselect('update')
@@ -296,18 +296,18 @@ export default {
       getDept(row.deptId).then(response => {
         this.form = response.data
         this.open = true
-        this.title = '修改部门'
+        this.title = 'Modify Department'
         this.isEdit = true
       })
     },
-    /** 提交按钮 */
+    /** Submit button */
     submitForm: function() {
       this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.deptId !== undefined) {
             updateDept(this.form).then(response => {
               if (response.code === 200) {
-                this.msgSuccess('修改成功')
+                this.msgSuccess('Modified successfully')
                 this.open = false
                 this.getList()
               } else {
@@ -317,7 +317,7 @@ export default {
           } else {
             addDept(this.form).then(response => {
               if (response.code === 200) {
-                this.msgSuccess('新增成功')
+                this.msgSuccess('Successfully added')
                 this.open = false
                 this.getList()
               } else {
@@ -328,14 +328,14 @@ export default {
         }
       })
     },
-    /** 删除按钮操作 */
+    /** Delete button operation */
     handleDelete(row) {
       this.$confirm(
-        '是否确认删除名称为"' + row.deptName + '"的数据项?',
-        '警告',
+        'Are you sure to delete the data item with the name "' + row.deptName + '"?',
+        'caveat',
         {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel',
           type: 'warning'
         }
       )
@@ -344,7 +344,7 @@ export default {
         })
         .then(() => {
           this.getList()
-          this.msgSuccess('删除成功')
+          this.msgSuccess('Successfully deleted')
         })
         .catch(function() {})
     }

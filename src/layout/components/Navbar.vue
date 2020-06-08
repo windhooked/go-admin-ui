@@ -1,6 +1,11 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger
+      id="hamburger-container"
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
 
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
@@ -10,24 +15,25 @@
 
         <error-log class="errLog-container right-menu-item hover-effect" />
 
-        <el-tooltip content="源码地址" effect="dark" placement="bottom">
+        <el-tooltip content="source address" effect="dark" placement="bottom">
           <go-admin-git id="go-admin-git" class="right-menu-item hover-effect" />
         </el-tooltip>
 
-        <el-tooltip content="文档地址" effect="dark" placement="bottom">
+        <el-tooltip content="document address" effect="dark" placement="bottom">
           <go-admin-doc id="go-admin-doc" class="right-menu-item hover-effect" />
         </el-tooltip>
 
-        <el-tooltip content="打赏" effect="dark" placement="bottom">
+        <!--
+          <el-tooltip content="donate" effect="dark" placement="bottom">
           <go-admin-donate id="go-admin-donatet" class="right-menu-item hover-effect" />
         </el-tooltip>
+        -->
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
         <el-tooltip content="Global Size" effect="dark" placement="bottom">
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
-
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
@@ -37,7 +43,7 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/profile/index">
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item>Settings</el-dropdown-item>
           </router-link>
           <a target="_blank" href="https://github.com/wenjianzhang/go-admin">
             <el-dropdown-item>Github go-admin</el-dropdown-item>
@@ -46,10 +52,10 @@
             <el-dropdown-item>Github go-admin-ui</el-dropdown-item>
           </a>
           <a target="_blank" href="https://github.com/wenjianzhang/go-admin/wiki">
-            <el-dropdown-item>文档</el-dropdown-item>
+            <el-dropdown-item>Wiki</el-dropdown-item>
           </a>
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">退出登录</span>
+            <span style="display:block;" @click="logout">Logout</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -82,20 +88,16 @@ export default {
     GoAdminDonate
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar',
-      'device'
-    ])
+    ...mapGetters(['sidebar', 'avatar', 'device'])
   },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      this.$confirm('确定注销并退出系统吗？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Are you sure to log out and exit the system?', 'Prompt', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         this.$store.dispatch('user/LogOut').then(() => {
@@ -113,18 +115,18 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, .025)
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 
@@ -156,10 +158,10 @@ export default {
 
       &.hover-effect {
         cursor: pointer;
-        transition: background .3s;
+        transition: background 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, .025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }

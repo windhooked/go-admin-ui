@@ -18,7 +18,7 @@
           label-width="100px"
         >
           <el-col :span="24">
-            <el-form-item label="生成类型" prop="type">
+            <el-form-item label="Generation type" prop="type">
               <el-radio-group v-model="formData.type">
                 <el-radio-button
                   v-for="(item, index) in typeOptions"
@@ -30,8 +30,8 @@
                 </el-radio-button>
               </el-radio-group>
             </el-form-item>
-            <el-form-item v-if="showFileName" label="文件名" prop="fileName">
-              <el-input v-model="formData.fileName" placeholder="请输入文件名" clearable />
+            <el-form-item v-if="showFileName" label="show file name" prop="fileName">
+              <el-input v-model="formData.fileName" placeholder="Please enter the file name" clearable />
             </el-form-item>
           </el-col>
         </el-form>
@@ -62,20 +62,20 @@ export default {
       rules: {
         fileName: [{
           required: true,
-          message: '请输入文件名',
+          message: 'Please enter a file name',
           trigger: 'blur'
         }],
         type: [{
           required: true,
-          message: '生成类型不能为空',
+          message: 'Generation type cannot be empty',
           trigger: 'change'
         }]
       },
       typeOptions: [{
-        label: '页面',
+        label: 'Page',
         value: 'file'
       }, {
-        label: '弹窗',
+        label: 'Pop-up window',
         value: 'dialog'
       }]
     }

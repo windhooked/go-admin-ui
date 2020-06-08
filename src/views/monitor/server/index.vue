@@ -5,27 +5,27 @@
       <el-col :span="12" class="card-box">
         <el-card>
           <div slot="header">
-            <span>服务器信息</span>
+            <span>Server information</span>
           </div>
           <div class="el-table el-table--enable-row-hover el-table--medium">
             <table cellspacing="0" style="width: 100%;">
               <thead>
                 <tr>
-                  <th class="is-leaf"><div class="cell">属性</div></th>
+                  <th class="is-leaf"><div class="cell">Properties</div></th>
                   <th class="is-leaf"><div class="cell">值</div></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><div class="cell">服务器架构</div></td>
+                  <td><div class="cell">Server architecture</div></td>
                   <td><div v-if="server.os" class="cell">{{ server.os.arch }}</div></td>
                 </tr>
                 <tr>
-                  <td><div class="cell">操作系统</div></td>
+                  <td><div class="cell">Operating system</div></td>
                   <td><div v-if="server.os" class="cell">{{ server.os.goOs }}</div></td>
                 </tr>
                 <tr>
-                  <td><div class="cell">核心数</div></td>
+                  <td><div class="cell">Number of cores</div></td>
                   <td><div v-if="server.cpu" class="cell">{{ server.cpu.cpuNum }}</div></td>
                 </tr>
               </tbody>
@@ -47,17 +47,17 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><div class="cell">总内存</div></td>
+                  <td><div class="cell">Total memory</div></td>
                   <td><div v-if="server.mem" class="cell">{{ server.mem.total }}G</div></td>
 
                 </tr>
                 <tr>
-                  <td><div class="cell">已用内存</div></td>
+                  <td><div class="cell">used memory</div></td>
                   <td><div v-if="server.mem" class="cell">{{ server.mem.used }}G</div></td>
 
                 </tr>
                 <tr>
-                  <td><div class="cell">使用率</div></td>
+                  <td><div class="cell">Utilization rate</div></td>
                   <td><div v-if="server.mem" class="cell" :class="{'text-danger': server.mem.usage > 80}">{{ server.mem.usage }}%</div></td>
 
                 </tr>
@@ -70,13 +70,13 @@
       <el-col :span="12" class="card-box">
         <el-card>
           <div slot="header">
-            <span>go运行环境</span>
+            <span>go operating environment</span>
           </div>
           <div class="el-table el-table--enable-row-hover el-table--medium">
             <table cellspacing="0" style="width: 100%;">
               <thead>
                 <tr>
-                  <th class="is-leaf"><div class="cell">属性</div></th>
+                  <th class="is-leaf"><div class="cell">Properties</div></th>
                   <th class="is-leaf"><div class="cell">值</div></th>
                 </tr>
               </thead>
@@ -98,7 +98,7 @@
       <el-col :span="12" class="card-box">
         <el-card>
           <div slot="header">
-            <span>磁盘状态</span>
+            <span>Disk status</span>
           </div>
           <div class="el-table el-table--enable-row-hover el-table--medium">
             <table cellspacing="0" style="width: 100%;">

@@ -9,40 +9,24 @@
       @close="onClose"
     >
       <el-row :gutter="0">
-        <el-form
-          ref="elForm"
-          :model="formData"
-          :rules="rules"
-          size="small"
-          label-width="100px"
-        >
+        <el-form ref="elForm" :model="formData" :rules="rules" size="small" label-width="100px">
           <el-col :span="24">
-            <el-form-item
-              label="选项名"
-              prop="label"
-            >
+            <el-form-item label="option name" prop="label">
               <el-input
                 v-model="formData.label"
-                placeholder="请输入选项名"
+                placeholder="Please enter the option name"
                 clearable
               />
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item
-              label="选项值"
-              prop="value"
-            >
+            <el-form-item label="option value" prop="value">
               <el-input
                 v-model="formData.value"
-                placeholder="请输入选项值"
+                placeholder="Please enter the option value"
                 clearable
               >
-                <el-select
-                  slot="append"
-                  v-model="dataType"
-                  :style="{width: '100px'}"
-                >
+                <el-select slot="append" v-model="dataType" :style="{width: '100px'}">
                   <el-option
                     v-for="(item, index) in dataTypeOptions"
                     :key="index"
@@ -57,15 +41,8 @@
         </el-form>
       </el-row>
       <div slot="footer">
-        <el-button
-          type="primary"
-          @click="handelConfirm"
-        >
-          确定
-        </el-button>
-        <el-button @click="close">
-          取消
-        </el-button>
+        <el-button type="primary" @click="handelConfirm">determine</el-button>
+        <el-button @click="close">cancel</el-button>
       </div>
     </el-dialog>
   </div>
@@ -88,14 +65,14 @@ export default {
         label: [
           {
             required: true,
-            message: '请输入选项名',
+            message: 'Please enter the option name',
             trigger: 'blur'
           }
         ],
         value: [
           {
             required: true,
-            message: '请输入选项值',
+            message: 'Please enter the option value',
             trigger: 'blur'
           }
         ]
@@ -103,11 +80,11 @@ export default {
       dataType: 'string',
       dataTypeOptions: [
         {
-          label: '字符串',
+          label: 'String',
           value: 'string'
         },
         {
-          label: '数字',
+          label: 'Number',
           value: 'number'
         }
       ]
